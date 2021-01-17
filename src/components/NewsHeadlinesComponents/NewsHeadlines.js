@@ -11,21 +11,19 @@ import {getTopHeadlinesQuery} from '../../queries/queries';
 
 function NewsHeadlines(){
 
+    //Declare State Hooks
     const [topHeadlines, setTopHeadlines] = useState([]);
     const [keyword, setKeyword] = useState('');
 
     let contentComponent;
 
+    // Apollo-graphql UseQuery Hook to make graphql request
     const { data, loading, error } = useQuery(getTopHeadlinesQuery, {variables: {keyword:keyword}});
 
     useEffect(() => {
         if(data) setTopHeadlines(data.topHeadlines);
-        return( ()=>setTopHeadlines([]));
-    }, [data]);
-
-    useEffect(() => {
-        console.log(topHeadlines);
-    }, [topHeadlines]);
+        return( ()=>setTopHeadlines([]));   // cleanup the state
+    }, [data]); // 'data' as dependency to update the component basd on response
 
     const onChangeHandler = (e)=>{
         setKeyword(e.target.value);
