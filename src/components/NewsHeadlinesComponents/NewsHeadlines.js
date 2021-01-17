@@ -17,7 +17,7 @@ function NewsHeadlines(){
 
     let contentComponent;
 
-    // Apollo-graphql UseQuery Hook to make graphql request
+    // Apollo-graphql UseQuery Hook to make graphql request 
     const { data, loading, error } = useQuery(getTopHeadlinesQuery, {variables: {keyword:keyword}});
 
     useEffect(() => {
