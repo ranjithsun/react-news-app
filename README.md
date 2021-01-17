@@ -1,10 +1,9 @@
-# Assignment on consuming SpaceX API
+# Assignment on consuming Graphql News API
 
 ## Stack
 
 The app is built on:
 * React
-* Redux
 * GraphQL 
 * @apollo/client
 * Styled components
@@ -33,5 +32,5 @@ To Run Test
 
 To Run in Browser
 ****************
-> http://localhost:3000/failed_launches
+> http://localhost:3000/news_headlines
 ****************
