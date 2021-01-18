@@ -4,11 +4,7 @@ import { getByText, findByText, render, fireEvent, cleanup, screen, waitFor, fin
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { MockedProvider } from '@apollo/react-testing';
 
-import Header from '../HeaderComponents/Header';
-import NewsHeadlinesComponents from '../NewsHeadlinesComponents/NewsHeadlines';
-import NewsList from '../NewsListComponent/NewsList';
-import SearchInput from '../SearchInputComponent/SearchInput';
-
+import NewsHeadlines from '../NewsHeadlinesComponents/NewsHeadlines';
 import {getTopHeadlinesQuery} from '../../queries/queries';
 
 //Setup Apollo Client
@@ -20,7 +16,7 @@ const client = new ApolloClient({
 const mockHeadlinesQuery = [
 {
     request: {
-        query: getLaunchPadsQuery,
+        query: getTopHeadlinesQuery,
     },
     result: {
       "topHeadlines": [
@@ -50,7 +46,7 @@ describe('Test News Headlines App', () => {
     afterEach(cleanup);
 
     it('Test whether the component loads correctly', () => {
-        const { getByText, getByTestId } = render(<ApolloProvider client={client}><NewsHeadlinesComponents /></ApolloProvider>);
+        const { getByText, getByTestId } = render(<ApolloProvider client={client}><NewsHeadlines /></ApolloProvider>);
 
         /** Test whether the select element load with tthe proper label*/
         expect(getByText(/Today/i).textContent).toBe("Today Headlines:");
@@ -60,7 +56,7 @@ describe('Test News Headlines App', () => {
     it('should render Headlines after graphql guery', async () => {
         const { container } = render(
         <MockedProvider mocks={mockHeadlinesQuery}>
-            <NewsList  />
+            <NewsHeadlines  />
         </MockedProvider>
         )
 
